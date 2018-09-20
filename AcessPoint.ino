@@ -1,44 +1,52 @@
 /*
-  Conexão AP
+  Conexão AP - WebServer
   IOT na prática com o ESP8266
- 
 */
 
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h>
-#include <ESP8266WebServer.h>
 
+const char *ssid = "pelicano"; //Node do SSID a ser transmitido
+const char *password = "pelicano1"; //Senha
 
-const char *ssid = "MEU_SSID"; //Node do SSID a ser transmitido
-const char *password = "MINHA_SENHA"; //Senha
-
-ESP8266WebServer server(80);
+WiFiServer servidor(80);
 
 /* AP Endereço http://192.168.4.1 
 */
-void pagina_html() {
-  server.send(200, "text/html", "<h1>Parabens!</h1><h1>Voce esta conectado no webserver do ESP8266</h1>");
-}
+
 
 void setup() {
-  delay(1000);
+  
   Serial.begin(115200);
   Serial.println();
-  Serial.print("Configurando o AP ...");
+  Serial.println("Configurando o AP ...");
   
   /* Start do AP*/
   WiFi.softAP(ssid, password);
-
-  IPAddress myIP = WiFi.softAPIP();
+  IPAddress MeuIP = WiFi.softAPIP();
   Serial.print("Endereço AP : ");
-  Serial.println(myIP);
+  Serial.println(MeuIP);
 
-   /* Start do Servidor Web*/
-  server.on("/", pagina_html);
-  server.begin();
-  Serial.println("HTTP Servidor Iniciado");
+  /*Start WebServer*/
+  servidor.begin();
+
 }
 
 void loop() {
-  server.handleClient();
+
+  WiFiClient client = servidor.available();
+  
+  if (client){
+    
+      Serial.println("Novo Cliente");
+     
+      String pagina = "";
+    
+      /* Página HTML */
+    
+      pagina += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n";
+      pagina += "<h1>Parabens!</h1><h2>Voce esta conectado no webserver do ESP8266</h2>";
+    
+      client.print(pagina);
+  }
+  
 }
