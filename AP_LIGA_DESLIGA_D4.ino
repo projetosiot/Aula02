@@ -7,8 +7,8 @@
 
 #include <ESP8266WiFi.h>
 
-const char *ssid = "pelicano"; //Node do SSID a ser transmitido
-const char *password = "pelicano1"; //Senha
+const char *ssid = "NOME_SSID"; //Node do SSID a ser transmitido
+const char *password = "SENHA"; //Senha
 
 WiFiServer servidor(80);
 
@@ -47,9 +47,7 @@ void loop() {
     
       /* Página HTML */
     
-      pagina += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n";
-      pagina += "<h1>Comando ESP8266</h1><h2>Liga/Desliga</h2>";
-      pagina += "<p>LED D4<a href=\"?function=d4_on\"><button>LIGA</button></a> <a href=\"?function=d4_off\"><button>DESLIGA</button></a></p>";
+      pagina += "<!doctype html>\n<html lang=\"pt-BR\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Curso ESP8266 na Prática</title>\n    </head>\n\n    <body>\n        <h1>Comando Liga/Desliga LED</h1>\n\t\t<p>LED D4\n\t\t\t<a href=?function=d4_on><button>LIGA</button></a>\n\t\t\t<a href=?function=d4_off><button>DESLIGA</button></a>\n\t\t</p>\n\t\t\t\n    </body>\n</html>";
 
       String req = client.readStringUntil('\r');
       if (req.indexOf("d4_on") != -1) digitalWrite(D4, LOW);
