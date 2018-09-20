@@ -1,6 +1,8 @@
 /*
   Conexão AP - WebServer
   IOT na prática com o ESP8266
+  https://github.com/esp8266/Arduino/tree/master/doc/esp8266wifi
+  http://tomeko.net/online_tools/cpp_text_escape.php?lang=en
 */
 
 #include <ESP8266WiFi.h>
@@ -42,10 +44,10 @@ void loop() {
       String pagina = "";
     
       /* Página HTML */
-    
-      pagina += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n";
-      pagina += "<h1>Parabens!</h1><h2>Voce esta conectado no webserver do ESP8266</h2>";
-    
+ 
+      pagina += "<!doctype html>\n<html lang=\"pt-BR\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Curso ESP8266 na Prática</title>\n    </head>\n\n    <body>\n        <h1>Parabéns</h1>\n\t\t<h2>Você está conectado no webserver do ESP8266 </h2>\n\t\t<h2>ESP8266 no modo AP<h2>\n    </body>\n</html>";
+
+      // Envia a página para o browser
       client.print(pagina);
   }
   
