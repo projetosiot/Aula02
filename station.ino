@@ -7,8 +7,8 @@
 
 #include <ESP8266WiFi.h>
 
-const char *ssid = "DL-CARVALE"; //Node do AP a ser conectado
-const char *password = "le021322"; //Senha do AP
+const char *ssid = "MEUAP"; //Nome do AP a ser conectado
+const char *password = "SENHA"; //Senha do AP
 
 //Configura o WifiServer
 WiFiServer servidor(80);
