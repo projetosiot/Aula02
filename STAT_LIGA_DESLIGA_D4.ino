@@ -7,8 +7,8 @@
 
 #include <ESP8266WiFi.h>
 
-const char *ssid = "NOME_AP"; //Nome do AP a ser conectado
-const char *password = "SENHA"; //Senha do AP
+const char *ssid = "SeuAp"; //Nome do AP a ser conectado
+const char *password = "SuaSenha"; //Senha do AP
 
 //Configura o WifiServer
 WiFiServer servidor(80);
@@ -22,6 +22,7 @@ void setup() {
   Serial.println();
 
   //Conectando no AP
+  WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.print("Conectando");
 
