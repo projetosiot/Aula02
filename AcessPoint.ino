@@ -7,8 +7,8 @@
 
 #include <ESP8266WiFi.h>
 
-const char *ssid = "MeuSSID"; //Node do SSID a ser transmitido
-const char *password = "SENHA"; //Senha
+const char *ssid = "seussid"; //Node do SSID a ser transmitido
+const char *password = "suasenha"; //Senha
 
 WiFiServer servidor(80);
 
@@ -20,11 +20,13 @@ void setup() {
   
   Serial.begin(115200);
   Serial.println();
-  Serial.println("Configurando o AP ...");
+  Serial.println("Configurando o Soft AP ...");
   
-  /* Start do AP*/
+  // WiFi modo Access Point
+  WiFi.mode(WIFI_AP);
   WiFi.softAP(ssid, password);
   IPAddress MeuIP = WiFi.softAPIP();
+  
   Serial.print("Endereço AP : ");
   Serial.println(MeuIP);
 
@@ -45,7 +47,7 @@ void loop() {
     
       /* Página HTML */
  
-      pagina += "<!doctype html>\n<html lang=\"pt-BR\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Curso ESP8266 na Prática</title>\n    </head>\n\n    <body>\n        <h1>Parabéns</h1>\n\t\t<h2>Você está conectado no webserver do ESP8266 </h2>\n\t\t<h2>ESP8266 no modo AP<h2>\n    </body>\n</html>";
+      pagina += "<!doctype html>\n<html lang=\"pt-BR\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Curso ESP8266 na Prática</title>\n    </head>\n\n    <body>\n        <h1>Parabéns</h1>\n\t<h2>Você está conectado no webserver do ESP8266 </h2>\n\t<h2>ESP8266 no modo AP<h2>\n<p> Pelicano 2018 </p>\n\n    </body>\n</html>\n";
 
       // Envia a página para o browser
       client.print(pagina);
