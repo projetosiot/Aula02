@@ -15,7 +15,7 @@ const char *ssid = "Seu Ap"; //Nome do AP a ser conectado
 const char *password = "Sua Senha"; //Senha do AP
 
 //Configura o WifiServer
-WiFiServer servidor(80);
+WiFiServer servidor(100);
 
 void setup() {
   
