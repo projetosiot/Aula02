@@ -11,8 +11,8 @@
 int pinDHT11 = D1; // Pino onte está conectado o DHT11
 SimpleDHT11 dht11(pinDHT11);
 
-const char *ssid = "DL-CARVALE"; //Nome do AP a ser conectado
-const char *password = "le021322"; //Senha do AP
+const char *ssid = "Seu Ap"; //Nome do AP a ser conectado
+const char *password = "Sua Senha"; //Senha do AP
 
 //Configura o WifiServer
 WiFiServer servidor(80);
